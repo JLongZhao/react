@@ -37,8 +37,8 @@ function getDefaultModules() {
         loader: 'style-loader!css-loader!stylus-loader'
       },
       {
-        test: /\.(png|jpg|gif|woff|woff2)$/,
-        loader: 'url-loader?limit=8192'
+        test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+        loader: 'url-loader?limit=10000'
       },
       {
         test: /\.(mp4|ogg|svg)$/,
@@ -54,7 +54,7 @@ function getDefaultModules() {
 
 module.exports = {
   srcPath: srcPath,
-  publicPath: '/assets/',
+  publicPath: 'assets/',
   port: dfltPort,
   getDefaultModules: getDefaultModules
 };

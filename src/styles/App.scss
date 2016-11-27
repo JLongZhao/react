@@ -1,3 +1,11 @@
+@font-face {font-family: "iconfont";
+  src: url('../fonts/icons/iconfont.eot?t=1480251954714'); /* IE9*/
+  src: url('../fonts/icons/iconfont.eot?t=1480251954714#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/icons/iconfont.woff?t=1480251954714') format('woff'), /* chrome, firefox */
+  url('../fonts/icons/iconfont.ttf?t=1480251954714') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../fonts/icons/iconfont.svg?t=1480251954714#iconfont') format('svg'); /* iOS 4.1- */
+}
+
 /* Base Application Styles */
 html,body {
   color: #fff;
@@ -12,7 +20,7 @@ html,body {
 .stage{
   position: relative;
   width: 100%;
-  height: 800px;
+  height: 900px;
   overflow: hidden;
 }
 
@@ -23,6 +31,8 @@ html,body {
 
   overflow: hidden;
   background-color: #fff;
+
+  perspective: 1800px;
   
   @at-root{
     .img-figure{
@@ -35,6 +45,17 @@ html,body {
       position: absolute;
       top: 0;
       left: 0;
+      cursor: pointer;
+      transform-origin: 0 50% 0;
+      transform-style: preserve-3d;
+
+      transition: transform .6s ease-in-out, left .6s ease-in-out, top .6s ease-in-out;
+
+      &.is-inverse{
+        z-index: 101;
+        transform: translate(320px) rotateY(180deg);
+      }
+
       >img{
         width: 100%;
         height: 90%;
@@ -43,10 +64,37 @@ html,body {
       figcaption {
         text-align: center;
 
-          margin-top: 20px;
+        margin-top: 20px;
+
         .img-title{
           color: #a7a0a2;
           font-size: 16px;
+        }
+
+        .img-back {
+          position: absolute;
+          top: 0;
+          left: 0;
+
+          width: 100%;
+          height: 100%;
+          padding: 50px 40px;
+          overflow: auto;
+
+          color: #a7a0a2;
+          font-size: 22px;
+          line-height: 1.25;
+          text-align: left;
+
+          background-color: #fff;
+
+          box-sizing: border-box;
+          transform: rotateY(180deg) translateZ(1px);
+          backface-visibility: hidden;
+
+          p {
+            margin: 0;
+          }
         }
       }
     }
@@ -61,4 +109,46 @@ html,body {
 
   width: 100%;
   text-align:  center;
+
+  @at-root{
+    .controller-unit {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      margin: 0 5px;
+
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #aaa;
+      border-radius: 50%;
+
+      transform: scale(0.5);
+
+      transition: transform .6s ease-in-out, background-color .4s;
+
+      &.is-center{
+        background-color: #888;
+
+        transform: scale(1);
+
+        line-height: 30px;
+
+        &::after{
+          font-family:"iconfont" !important;
+          font-size:12px;
+          font-style:normal;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+
+          content: "\e670";
+        }
+      }
+      &.is-inverse{
+        background-color: #555;
+
+        transform: rotateY(180deg);
+      }
+    }
+  }
 }
